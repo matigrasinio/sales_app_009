@@ -1,4 +1,5 @@
 library(shiny)
+source("utils.R")
 
 ui <- shinydashboardPlus::dashboardPage(
   options = list(sidebarExpandOnHover = TRUE),
@@ -6,8 +7,8 @@ ui <- shinydashboardPlus::dashboardPage(
     title = "Sales App" |> shiny::h3(class = "dropdown", style = "display: inline;")
   ),
   sidebar = shinydashboardPlus::dashboardSidebar(
-    minified = TRUE, collapsed = FALSE
-
+    minified = TRUE, collapsed = FALSE,
+    shiny::selectInput("store", "Stroe", choices = 1:3, selected = 1)
   ),
   body = shinydashboard::dashboardBody(
 
@@ -18,6 +19,10 @@ ui <- shinydashboardPlus::dashboardPage(
 server <- function(input, output, session) {
 
   res_data <- reactiveVal(NULL)
+
+  observeEvent(input$store, {
+    res_data(read_data(input$store))
+  }, ignoreNULL = TRUE)
 
 }
 
