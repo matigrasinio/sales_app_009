@@ -8,7 +8,7 @@ ui <- shinydashboardPlus::dashboardPage(
   ),
   sidebar = shinydashboardPlus::dashboardSidebar(
     minified = TRUE, collapsed = FALSE,
-    shiny::selectInput("store", "Stroe", choices = 1:3, selected = 1)
+    shiny::selectInput("store", "Store", choices = 1:3, selected = 1)
   ),
   body = shinydashboard::dashboardBody(
 
