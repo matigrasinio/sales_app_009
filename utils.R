@@ -4,7 +4,10 @@ data_header <- function(store, department) {
 
 subset_data <- function(data, cols) {
   valid_cols <- intersect(cols, colnames(data))
-  data[, valid_cols]
+  if (length(cols) == 0) {
+    return(data)
+  }
+  data[, valid_cols, drop = FALSE]
 }
 
 read_data <- function(store) {
