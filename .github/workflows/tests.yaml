@@ -1,0 +1,12 @@
+name: Running Tests
+on:
+  push
+env:
+  IMAGE_VERSION: 1.1
+jobs:
+  running-tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Dockerized Unittests
+        run: docker run -v `pwd`:/project -w="/project" metjusinio/sales_app:$IMAGE_VERSION bash -c "Rscript tests/testthat.R"
